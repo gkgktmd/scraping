@@ -27,4 +27,4 @@ print('기준시간:',datetime.datetime.now())
 print('키워드: 자동차보험')
 print('-'*50)
 for i,x in enumerate(rank):
-    print(f'{i+1}등: {x.get_text()}')
+    print(f'{i+1}순위: {x.get_text()}')
