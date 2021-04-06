@@ -6,6 +6,16 @@ root.title('실시간 검색키워드 순위')
 #root.geometry('400x350+100+100')
 
 def searching():
+    if time_a.size()!=0:
+        time_a.delete(0,END)
+    else:
+        pass
+    if lst_box.size()!=0:
+        lst_box.delete(0,END)
+    else:
+        pass
+    # time_a.delete('0',END)
+    # lst_box.delete('1.0',END)
     from urllib.request import urlopen
     from bs4 import BeautifulSoup
     import datetime
