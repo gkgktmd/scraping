@@ -46,12 +46,12 @@ rank_n_m_dir = soup_n_m_dir.findAll('span', attrs={'class': 'tit'})
 
 for i, x in enumerate(rank_n_m_car):
     if 'DB' in x.get_text():
-        print(f'★{i + 1}순위: {x.get_text()}★')
+        print(f'★{i + 1}순위: {x.get_text().strip()}★')
     else:
-        print(f'{i + 1}순위: {x.get_text()}')
+        print(f'{i + 1}순위: {x.get_text().strip()}')
 
 for i, x in enumerate(rank_n_m_dir):
     if 'DB' in x.get_text():
-        print(f'★{i + 1}순위: {x.get_text()}★')
+        print(f'★{i + 1}순위: {x.get_text().strip()}★')
     else:
-        print(f'{i + 1}순위: {x.get_text()}')
+        print(f'{i + 1}순위: {x.get_text().strip()}')

@@ -4,51 +4,92 @@ import tkinter.ttk as ttk
 root=Tk()
 root.title('실시간 검색키워드 순위')
 #root.geometry('400x350+100+100')
-
+a='★'
 def searching():
-    pass
-#     if time_a.size()!=0:
-#         time_a.delete(0,END)
-#     else:
-#         pass
-#     if lst_box.size()!=0:
-#         lst_box.delete(0,END)
-#     else:
-#         pass
-#     from urllib.request import urlopen
-#     from bs4 import BeautifulSoup
-#     import datetime
-#     import ssl
-#     context = ssl._create_unverified_context()
-#
-#     keyword_sel=cmb1.get()
-#     if keyword_sel=='자동차보험':
-#         n_w_car = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
-#         # 네이버 웹 자동차보험 카워드
-#
-#         res = urlopen(n_w_car, context=context)
-#         #res.raise_for_status()
-#
-#         soup = BeautifulSoup(res.read(), 'lxml')
-#         rank = soup.findAll('div', attrs={'class': 'lnk_tit'})
-#
-#         time_a.insert(END,datetime.datetime.now())
-#         for i, x in enumerate(rank):
-#             lst_box.insert(END,f'{i + 1}순위: {x.get_text()}')
-#
-#     else:
-#         n_w_dir = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
-#         # 네이버 웹 자동차보험 카워드
-#
-#         res = urlopen(n_w_dir, context=context)
-#         # res.raise_for_status()
-#
-#         soup = BeautifulSoup(res.read(), 'lxml')
-#         rank = soup.findAll('div', attrs={'class': 'lnk_tit'})
-#
-#         time_a.insert(END, datetime.datetime.now())
-#         for i, x in enumerate(rank):
-#             lst_box.insert(END, f'{i + 1}순위: {x.get_text()}')
+    if time_a.size()!=0:
+        time_a.delete(0,END)
+    else:
+        pass
+    if lst_box_car_w.size()!=0:
+        lst_box_car_w.delete(0,END)
+    else:
+        pass
+    if lst_box_dir_w.size()!=0:
+        lst_box_dir_w.delete(0,END)
+    else:
+        pass
+    if lst_box_car_m.size()!=0:
+        lst_box_car_m.delete(0,END)
+    else:
+        pass
+    if lst_box_dir_m.size()!=0:
+        lst_box_dir_m.delete(0,END)
+    else:
+        pass
+    from urllib.request import urlopen
+    from bs4 import BeautifulSoup
+    import datetime
+    import ssl
+    context = ssl._create_unverified_context()
+
+    keyword_sel=cmb1.get()
+    if keyword_sel=='네이버':
+        # 네이버 웹
+        n_w_car = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
+        # 네이버 웹 자동차보험 카워드
+        n_w_dir = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
+
+        res_n_w_car = urlopen(n_w_car, context=context)
+        res_n_w_dir = urlopen(n_w_dir, context=context)
+
+        soup_n_w_car = BeautifulSoup(res_n_w_car.read(), 'lxml')
+        rank_n_w_car = soup_n_w_car.findAll('div', attrs={'class': 'lnk_tit'})
+
+        soup_n_w_dir = BeautifulSoup(res_n_w_dir.read(), 'lxml')
+        rank_n_w_dir = soup_n_w_dir.findAll('div', attrs={'class': 'lnk_tit'})
+
+        for i, x in enumerate(rank_n_w_car):
+            lst_box_car_w.insert(END, f'{i + 1}순위: {x.get_text()}')
+
+        for i, x in enumerate(rank_n_w_dir):
+            lst_box_dir_w.insert(END, f'{i + 1}순위: {x.get_text()}')
+
+        # 네이버 모바일
+        n_m_car = 'https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
+
+        n_m_dir = 'https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
+
+        res_n_m_car = urlopen(n_m_car, context=context)
+        res_n_m_dir = urlopen(n_m_dir, context=context)
+
+        soup_n_m_car = BeautifulSoup(res_n_m_car.read(), 'lxml')
+        rank_n_m_car = soup_n_m_car.findAll('span', attrs={'class': 'tit'})
+
+        soup_n_m_dir = BeautifulSoup(res_n_m_dir.read(), 'lxml')
+        rank_n_m_dir = soup_n_m_dir.findAll('span', attrs={'class': 'tit'})
+
+        for i, x in enumerate(rank_n_m_car):
+            lst_box_car_m.insert(END,f'{i + 1}순위: {x.get_text().strip()}')
+
+        for i, x in enumerate(rank_n_m_dir):
+            lst_box_dir_m.insert(END, f'{i + 1}순위: {x.get_text().strip()}')
+
+        time_a.insert(END, datetime.datetime.now())
+
+    else:
+        pass
+        # n_w_dir = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98'
+        # # 네이버 웹 자동차보험 카워드
+        #
+        # res = urlopen(n_w_dir, context=context)
+        # # res.raise_for_status()
+        #
+        # soup = BeautifulSoup(res.read(), 'lxml')
+        # rank = soup.findAll('div', attrs={'class': 'lnk_tit'})
+        #
+        # time_a.insert(END, datetime.datetime.now())
+        # for i, x in enumerate(rank):
+        #     lst_box.insert(END, f'{i + 1}순위: {x.get_text()}')
 
 #인풋 프레임
 basic=LabelFrame(root,text='포탈구분',padx=5,pady=5)
