@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-
+/*추가*/
 root=Tk()
 root.title('실시간 검색키워드 순위')
 #root.geometry('400x350+100+100')
